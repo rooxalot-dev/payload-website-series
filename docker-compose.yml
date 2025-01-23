@@ -26,7 +26,6 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      # - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
   
   mongo-express:
     image: mongo-express
@@ -42,6 +41,8 @@ services:
       - ME_CONFIG_BASICAUTH_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - ME_CONFIG_BASICAUTH_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     depends_on:
+      - mongo
+    links:
       - mongo
     ports:
       - "8081:8081"
